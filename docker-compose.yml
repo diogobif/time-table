@@ -1,0 +1,11 @@
+services:
+  app:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/application
+      - /node_modules
+    command: sh ./docker/entrypoint.sh
