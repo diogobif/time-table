@@ -2,7 +2,10 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const valorPorHora = 15;
+  const valuePerHour = 15;
+  const [counter, setCounter] = useState(1);
+  const [totalMinutos, setTotalMinutos] = useState(0);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const startList = [];
@@ -35,9 +38,6 @@ function App() {
     setTotalMinutos(total);
   };
 
-  const [counter, setCounter] = useState(1);
-  const [totalMinutos, setTotalMinutos] = useState(0);
-
   const handleAddItem = () => {
     setCounter((counter) => counter + 1);
   };
@@ -64,6 +64,7 @@ function App() {
 
     return <div>{elements}</div>;
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -78,9 +79,9 @@ function App() {
         <br />
         <span>Total Horas: {totalMinutos / 60}</span>
         <br />
-        <span>Valor por hora: {valorPorHora}</span>
+        <span>Valor por hora: {valuePerHour}</span>
         <br />
-        <span>Total (euros): {(valorPorHora / 60) * totalMinutos}</span>
+        <span>Total (euros): {(valuePerHour / 60) * totalMinutos}</span>
       </div>
     </div>
   );
