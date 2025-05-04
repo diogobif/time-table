@@ -2,10 +2,7 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const valuePerHour = 15;
-  const [counter, setCounter] = useState(1);
-  const [totalMinutos, setTotalMinutos] = useState(0);
-
+  const valorPorHora = 15;
   const handleSubmit = (e) => {
     e.preventDefault();
     const startList = [];
@@ -38,6 +35,9 @@ function App() {
     setTotalMinutos(total);
   };
 
+  const [counter, setCounter] = useState(1);
+  const [totalMinutos, setTotalMinutos] = useState(0);
+
   const handleAddItem = () => {
     setCounter((counter) => counter + 1);
   };
@@ -46,7 +46,7 @@ function App() {
     const elements = [];
     for (let i = 1; i <= counter; i++) {
       elements.push(
-        <div>
+        <li>
           <input
             type="datetime-local"
             id={["start", i].join("_")}
@@ -58,19 +58,20 @@ function App() {
             placeholder="ATÉ"
           />
           <span id={["totalMinutos", i].join("_")}></span>
-        </div>
+        </li>
       );
     }
 
-    return <div>{elements}</div>;
+    return elements;
   };
 
   return (
     <div>
+      <h1 data-test="home-header">Home</h1>
       <form onSubmit={handleSubmit}>
-        {showElements()}
-        <button type="button" onClick={handleAddItem}>
-          ADICIONAR
+        <ul data-test="time-table-list">{showElements()}</ul>
+        <button type="button" data-test="add-button" onClick={handleAddItem}>
+          ADD
         </button>
         <button type="submit">CALCULAR</button>
       </form>
@@ -79,9 +80,9 @@ function App() {
         <br />
         <span>Total Horas: {totalMinutos / 60}</span>
         <br />
-        <span>Valor por hora: {valuePerHour}</span>
+        <span>Valor por hora: {valorPorHora}</span>
         <br />
-        <span>Total (euros): {(valuePerHour / 60) * totalMinutos}</span>
+        <span>Total (euros): {(valorPorHora / 60) * totalMinutos}</span>
       </div>
     </div>
   );
