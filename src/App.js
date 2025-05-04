@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./App.css";
 
 function App() {
   const valorPorHora = 15;
@@ -73,7 +72,7 @@ function App() {
         <button type="button" data-test="add-button" onClick={handleAddItem}>
           ADD
         </button>
-        <button type="submit">CALCULAR</button>
+        <button type="submit">CALCULATE</button>
       </form>
       <div>
         <span>Total minutos: {totalMinutos}</span>
